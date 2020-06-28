@@ -1,20 +1,8 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {AppNavigation} from './src/navigation/AppNavigation';
 
 const App = () => {
-  return (
-    <View style={styles.container}>
-      <Text>It's alive!</Text>
-    </View>
-  );
+  return <AppNavigation />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default App;
