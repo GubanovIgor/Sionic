@@ -1,5 +1,11 @@
 const Item = require("../models/item");
 
 exports.getItem = async (req, res, next) => {
-  console.log("getItem");
+  const categoryId = req.query.categoryId;
+
+  const items = await Item.find({
+    category: { $in: categoryId },
+  });
+
+  res.json(items);
 };

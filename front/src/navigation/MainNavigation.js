@@ -1,8 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {CategoryScreen} from '../screens/CategoryScreen';
-import {ItemsScreen} from '../screens/ItemsScreen';
+import CategoryScreen from '../screens/CategoryScreen';
+import ItemsScreen from '../screens/ItemsScreen';
 import {screenDefaultOptions} from './navigationOptions/navigationOptions';
 
 const MainNavigator = createStackNavigator();

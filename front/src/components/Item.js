@@ -7,7 +7,7 @@ export const Item = ({item, onOpen, itemListPadding}) => {
 
   return (
     <TouchableOpacity onPress={onOpen} style={styles(itemWidth).container}>
-      <Text>Продукт</Text>
+      <Text>{item.name}</Text>
     </TouchableOpacity>
   );
 };
