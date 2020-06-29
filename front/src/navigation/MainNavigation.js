@@ -4,7 +4,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {CategoryScreen} from '../screens/CategoryScreen';
 import {ItemsScreen} from '../screens/ItemsScreen';
 import {screenDefaultOptions} from './navigationOptions/navigationOptions';
-import {ItemScreen} from '../screens/ItemScreen';
 
 const MainNavigator = createStackNavigator();
 
@@ -20,11 +19,6 @@ export const MainNavigation = () => {
         name="Items"
         component={ItemsScreen}
         options={ItemsScreen.navigationOptions}
-      />
-      <MainNavigator.Screen
-        name="Item"
-        component={ItemScreen}
-        options={ItemScreen.navigationOptions}
       />
     </MainNavigator.Navigator>
   );
