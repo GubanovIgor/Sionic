@@ -4,6 +4,8 @@ const path = require("path");
 
 // Routes import
 const index = require("./routes/index");
+const category = require("./routes/category");
+const item = require("./routes/item");
 
 const APP = express();
 
@@ -33,5 +35,7 @@ APP.use(express.static(path.join(__dirname, "public")));
 APP.use(express.urlencoded({ extended: true, limit: "50kb" }));
 
 APP.use("/", index);
+APP.use("/categories", category);
+APP.use("/items", item);
 
 module.exports = APP;
