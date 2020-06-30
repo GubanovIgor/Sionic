@@ -1,6 +1,6 @@
 import {observable, action} from 'mobx';
 
-export default class Store {
+export default class ProductStore {
   @observable
   categories = [];
   items = [];
@@ -19,7 +19,6 @@ export default class Store {
 
   @action
   async getItems(categoryId) {
-    console.log(categoryId)
     const res = await fetch(
       `http://192.168.1.66:3000/items?categoryId=${categoryId}`,
       {

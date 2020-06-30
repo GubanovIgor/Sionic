@@ -1,14 +1,25 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Dimensions,
+  View,
+} from 'react-native';
 
 export const Item = ({item, onOpen, itemListPadding}) => {
   const itemWidth =
     ((Dimensions.get('window').width - itemListPadding * 2) / 100) * 45;
 
   return (
-    <TouchableOpacity onPress={onOpen} style={styles(itemWidth).container}>
-      <Text>{item.name}</Text>
-    </TouchableOpacity>
+    <View onPress={onOpen} style={styles(itemWidth).container}>
+      <Text style={styles().title}>{item.name}</Text>
+      <Text>{item.price} ₽</Text>
+      <Text style={styles().title}>{item.property}</Text>
+      <TouchableOpacity style={styles().button}>
+        <Text style={styles().buttonText}>В КОРЗИНУ</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -21,5 +32,21 @@ const styles = itemWidth =>
       borderRadius: 20,
       padding: 20,
       marginVertical: 5,
+      justifyContent: 'space-around',
+    },
+    title: {
+      fontSize: 10,
+    },
+    property: {},
+    button: {
+      backgroundColor: '#6c42f5',
+      paddingHorizontal: 10,
+      paddingVertical: 5,
+      borderRadius: 5,
+    },
+    buttonText: {
+      fontSize: 12,
+      color: '#fff',
+      textAlign: 'center',
     },
   });

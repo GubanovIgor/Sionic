@@ -1,17 +1,22 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {observer, inject} from 'mobx-react';
 import {CategoryList} from '../components/CategoryList';
 
-const CategoryScreen = ({navigation, store}) => {
+const CategoryScreen = ({navigation, productStore}) => {
   useEffect(() => {
-    store.getCategories()
-  }, [])
+    productStore.getCategories();
+  }, []);
 
-  const openCategoryHandler = async (categoryId) => {
-    await store.getItems(categoryId)
+  const openCategoryHandler = async categoryId => {
+    await productStore.getItems(categoryId);
     navigation.navigate('Items');
   };
-  return <CategoryList onOpen={openCategoryHandler} categories={store.categories}/>;
+  return (
+    <CategoryList
+      onOpen={openCategoryHandler}
+      categories={productStore.categories}
+    />
+  );
 };
 
 CategoryScreen.navigationOptions = () => {
@@ -20,4 +25,6 @@ CategoryScreen.navigationOptions = () => {
   };
 };
 
-export default inject(({store}) => ({store}))(observer(CategoryScreen));
+export default inject(({productStore}) => ({productStore}))(
+  observer(CategoryScreen),
+);
