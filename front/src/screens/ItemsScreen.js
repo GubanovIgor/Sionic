@@ -2,13 +2,14 @@ import React from 'react';
 import {observer, inject} from 'mobx-react';
 import {ItemList} from '../components/ItemList';
 
-const ItemsScreen = ({productStore}) => {
-  return (
-    <ItemList
-      onOpen={() => console.log('addToCart')}
-      items={productStore.items}
-    />
-  );
+const ItemsScreen = ({productStore, orderStore}) => {
+  const addToCartHandler = item => {
+    // console.log(productStore);
+    console.log(orderStore.cart);
+    orderStore.addToCart(item);
+  };
+
+  return <ItemList addToCart={addToCartHandler} items={productStore.items} />;
 };
 
 ItemsScreen.navigationOptions = () => {
@@ -17,6 +18,7 @@ ItemsScreen.navigationOptions = () => {
   };
 };
 
-export default inject(({productStore}) => ({productStore}))(
-  observer(ItemsScreen),
-);
+export default inject(({productStore, orderStore}) => ({
+  productStore,
+  orderStore,
+}))(observer(ItemsScreen));

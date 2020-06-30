@@ -5,7 +5,7 @@ import {Item} from './Item';
 
 const itemListPadding = 30;
 
-export const ItemList = ({onOpen, items}) => {
+export const ItemList = ({addToCart, items}) => {
   return (
     <FlatList
       columnWrapperStyle={{justifyContent: 'space-between'}}
@@ -14,7 +14,7 @@ export const ItemList = ({onOpen, items}) => {
       keyExtractor={item => item._id.toString()}
       numColumns={2}
       renderItem={({item}) => (
-        <Item item={item} itemListPadding={itemListPadding} onOpen={onOpen} />
+        <Item item={item} itemListPadding={itemListPadding} addToCart={addToCart} />
       )}
     />
   );

@@ -7,16 +7,16 @@ import {
   View,
 } from 'react-native';
 
-export const Item = ({item, onOpen, itemListPadding}) => {
+export const Item = ({item, addToCart, itemListPadding}) => {
   const itemWidth =
     ((Dimensions.get('window').width - itemListPadding * 2) / 100) * 45;
 
   return (
-    <View onPress={onOpen} style={styles(itemWidth).container}>
+    <View style={styles(itemWidth).container}>
       <Text style={styles().title}>{item.name}</Text>
       <Text>{item.price} ₽</Text>
       <Text style={styles().title}>{item.property}</Text>
-      <TouchableOpacity style={styles().button}>
+      <TouchableOpacity style={styles().button} onPress={() => addToCart(item)}>
         <Text style={styles().buttonText}>В КОРЗИНУ</Text>
       </TouchableOpacity>
     </View>
