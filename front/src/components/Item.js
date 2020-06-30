@@ -6,6 +6,7 @@ import {
   Dimensions,
   View,
 } from 'react-native';
+import { THEME } from '../theme';
 
 export const Item = ({item, addToCart, itemListPadding}) => {
   const itemWidth =
@@ -29,17 +30,17 @@ const styles = itemWidth =>
       minWidth: itemWidth,
       height: itemWidth,
       borderWidth: 1,
+      borderColor: THEME.MAIN,
       borderRadius: 20,
       padding: 20,
       marginVertical: 5,
-      justifyContent: 'space-around',
+      justifyContent: 'space-between',
     },
     title: {
       fontSize: 10,
     },
-    property: {},
     button: {
-      backgroundColor: '#6c42f5',
+      backgroundColor: THEME.MAIN,
       paddingHorizontal: 10,
       paddingVertical: 5,
       borderRadius: 5,

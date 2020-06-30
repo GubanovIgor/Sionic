@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {MainNavigation} from './MainNavigation';
 import {OrderNavigation} from './OrderNavigation';
 import {CartNavigation} from './CartNavigation';
+import { THEME } from '../theme';
 
 const BottomNavigator = createBottomTabNavigator();
 
@@ -22,14 +23,14 @@ const tabBarOptions = {
   style: {
     ...(Platform.OS === 'android'
       ? {
-          backgroundColor: '#6c42f5',
+          backgroundColor: THEME.MAIN,
           elevation: 0,
           borderTopWidth: 0,
         }
       : {
           backgroundColor: '#fff',
           borderTopWidth: 2,
-          borderTopColor: '#6c42f5',
+          borderTopColor: THEME.MAIN,
           shadowOpacity: 0,
         }),
   },

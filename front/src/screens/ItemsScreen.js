@@ -4,8 +4,6 @@ import {ItemList} from '../components/ItemList';
 
 const ItemsScreen = ({productStore, orderStore}) => {
   const addToCartHandler = item => {
-    // console.log(productStore);
-    console.log(orderStore.cart);
     orderStore.addToCart(item);
   };
 

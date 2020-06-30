@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
+import {THEME} from '../theme';
 
 export const Order = ({onOpen, itemListPadding}) => {
   const itemWidth =
@@ -18,6 +19,7 @@ const styles = itemWidth =>
       minWidth: itemWidth,
       height: itemWidth,
       borderWidth: 1,
+      borderColor: THEME.MAIN,
       borderRadius: 20,
       padding: 20,
       marginVertical: 5,

@@ -3,6 +3,7 @@ import {AppNavigation} from './src/navigation/AppNavigation';
 import {Provider} from 'mobx-react';
 import ProductStore from './src/store/productStore';
 import OrderStore from './src/store/orderStore';
+import 'mobx-react-lite/batchingForReactDom'
 
 class RootStore {
   constructor() {
