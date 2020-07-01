@@ -48,4 +48,16 @@ export default class OrderStore {
     });
     this.cart = newCart;
   }
+
+  @action
+  async addOrder(order) {
+    const newOrders = [...this.orders];
+    newOrders.push(order);
+    this.orders = newOrders;
+  }
+
+  @action
+  async clearCart() {
+    this.cart = [];
+  }
 }

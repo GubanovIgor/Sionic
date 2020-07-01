@@ -1,28 +1,20 @@
 import React from 'react';
-import {StyleSheet, FlatList} from 'react-native';
-
+import {FlatList, StyleSheet} from 'react-native';
 import {Order} from './Order';
 
-const itemListPadding = 30;
-
-export const OrderList = ({onOpen}) => {
+export const OrderList = ({onOpen, orders}) => {
   return (
     <FlatList
-      columnWrapperStyle={{justifyContent: 'space-between'}}
-      contentContainerStyle={styles(itemListPadding).wrapper}
-      data={items}
-      keyExtractor={item => item.id.toString()}
-      numColumns={2}
-      renderItem={({item}) => (
-        <Order item={item} itemListPadding={itemListPadding} onOpen={onOpen} />
-      )}
+      style={styles.container}
+      data={orders}
+      keyExtractor={item => item.date.toString()}
+      renderItem={({item}) => <Order order={item} onOpen={onOpen} />}
     />
   );
 };
 
-const styles = itemListPadding =>
-  StyleSheet.create({
-    wrapper: {
-      padding: itemListPadding,
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+});

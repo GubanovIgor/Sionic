@@ -9,7 +9,9 @@ const CartScreen = ({orderStore, navigation}) => {
   const items = toJS(orderStore.cart);
 
   const placeOrder = () => {
-    navigation.navigate('OrderForm');
+    navigation.navigate('OrderForm', {
+      sum,
+    });
   };
 
   const removeFromCart = item => {

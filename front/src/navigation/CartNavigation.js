@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import CartScreen from '../screens/CartScreen';
-import {OrderFormScreen} from '../screens/OrderFormScreen';
+import OrderFormScreen from '../screens/OrderFormScreen';
 import {screenDefaultOptions} from './navigationOptions/navigationOptions';
 
 const CartNavigator = createStackNavigator();

@@ -1,6 +1,9 @@
 import React from 'react';
 import {Formik} from 'formik';
 import * as yup from 'yup';
+import {toJS} from 'mobx';
+import {observer, inject} from 'mobx-react';
+import {THEME} from '../theme';
 import {
   View,
   Text,
@@ -11,17 +14,25 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {THEME} from '../theme';
-
-export const OrderFormScreen = () => {
+const OrderFormScreen = ({orderStore, navigation, route}) => {
   const reviewSchema = yup.object().shape({
     name: yup.string().required('Укажите имя'),
     adress: yup.string().required('Укажите адрес'),
     phone: yup.string().required('Укажите телфон'),
   });
 
-  const confirmOrder = () => {
-    console.log('it works');
+  const confirmOrder = async () => {
+    const orderContents = toJS(orderStore.cart);
+    const order = {
+      date: new Date(),
+      orderContents,
+      sum: route.params.sum,
+    };
+
+    await orderStore.addOrder(order);
+    await orderStore.clearCart();
+
+    navigation.navigate('Cart');
   };
 
   return (
@@ -115,3 +126,7 @@ OrderFormScreen.navigationOptions = () => {
     title: 'Товар',
   };
 };
+
+export default inject(({orderStore}) => ({orderStore}))(
+  observer(OrderFormScreen),
+);
