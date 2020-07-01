@@ -1,25 +1,22 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
-
+import {observer, inject} from 'mobx-react';
 import {ItemList} from '../components/ItemList';
 
-export const ItemsScreen = ({navigation}) => {
-  const itemOpenHandler = () => {
-    navigation.navigate('Item');
+const ItemsScreen = ({productStore, orderStore}) => {
+  const addToCartHandler = item => {
+    orderStore.addToCart(item);
   };
-  return <ItemList onOpen={itemOpenHandler} />;
+
+  return <ItemList addToCart={addToCartHandler} items={productStore.items} />;
 };
 
-ItemsScreen.navigationOptions = ({navigation}) => {
+ItemsScreen.navigationOptions = () => {
   return {
     title: 'Список товаров',
   };
 };
 
-const styles = StyleSheet.create({
-  loader: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+export default inject(({productStore, orderStore}) => ({
+  productStore,
+  orderStore,
+}))(observer(ItemsScreen));

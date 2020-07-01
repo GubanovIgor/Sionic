@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import {CartScreen} from '../screens/CartScreen';
+import CartScreen from '../screens/CartScreen';
 import {screenDefaultOptions} from './navigationOptions/navigationOptions';
 
 const CartNavigator = createStackNavigator();
