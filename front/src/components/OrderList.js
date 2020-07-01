@@ -3,44 +3,6 @@ import {StyleSheet, FlatList} from 'react-native';
 
 import {Order} from './Order';
 
-const items = [
-  {
-    id: 1,
-    category: 1,
-    name: 'Телевизор #1',
-    price: 100,
-    property: 'Значение свойства #1',
-  },
-  {
-    id: 2,
-    category: 1,
-    name: 'Телевизор #1',
-    price: 100,
-    property: 'Значение свойства #1',
-  },
-  {
-    id: 3,
-    category: 1,
-    name: 'Телевизор #1',
-    price: 100,
-    property: 'Значение свойства #1',
-  },
-  {
-    id: 4,
-    category: 1,
-    name: 'Телевизор #1',
-    price: 100,
-    property: 'Значение свойства #1',
-  },
-  {
-    id: 5,
-    category: 1,
-    name: 'Телевизор #1',
-    price: 100,
-    property: 'Значение свойства #1',
-  },
-];
-
 const itemListPadding = 30;
 
 export const OrderList = ({onOpen}) => {
