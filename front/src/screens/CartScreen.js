@@ -1,15 +1,43 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import {observer, inject} from 'mobx-react';
 import {CartItemList} from '../components/CartItemList';
-import { toJS } from 'mobx';
+import {toJS} from 'mobx';
 
 const CartScreen = ({orderStore}) => {
-  const items = toJS(orderStore.cart)
+  const items = toJS(orderStore.cart);
+
+  const removeFromCart = item => {
+    orderStore.removeFromCart(item);
+  };
+
+  const changeAmount = (item, sign) => {
+    orderStore.changeAmount(item, sign);
+  };
+
+  if (!items.length) {
+    return (
+      <View style={styles.emptyContainer}>
+        <Text>Корзина пуста</Text>
+      </View>
+    );
+  }
+
+  const sum = items.reduce((accumulator, el) => {
+    return accumulator + el.price * el.amount;
+  }, 0);
 
   return (
     <View style={styles.container}>
-      <CartItemList items={items} />
+      <CartItemList
+        items={items}
+        removeFromCart={removeFromCart}
+        changeAmount={changeAmount}
+      />
+      <View style={styles.sumWrapper}>
+        <Text>СУММА:</Text>
+        <Text>{sum} ₽</Text>
+      </View>
     </View>
   );
 };
@@ -22,8 +50,17 @@ CartScreen.navigationOptions = () => {
 
 const styles = StyleSheet.create({
   container: {
+    padding: 10,
+  },
+  emptyContainer: {
     flex: 1,
-    padding: 10
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sumWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 15,
   },
 });
 
