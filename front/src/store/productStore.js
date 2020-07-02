@@ -18,10 +18,9 @@ export default class ProductStore {
   }
 
   @action
-  async getItems(categoryId, itemCount) {
-    console.log(itemCount, typeof itemCount)
+  async getItems(categoryId, itemCount, filterType = 'name') {
     const res = await fetch(
-      `http://192.168.1.66:3000/items?categoryId=${categoryId}&itemCount=${itemCount}`,
+      `http://192.168.1.66:3000/items?categoryId=${categoryId}&itemCount=${itemCount}&filterType=${filterType}`,
       {
         method: 'GET',
         headers: {
