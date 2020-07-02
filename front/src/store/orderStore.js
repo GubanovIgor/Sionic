@@ -1,11 +1,10 @@
 import {observable, action} from 'mobx';
+import {persist} from 'mobx-persist';
 
 export default class OrderStore {
-  @observable
-  orders = [];
+  @persist('list') @observable orders = [];
 
-  @observable
-  cart = [];
+  @persist('list') @observable cart = [];
 
   @action
   async addToCart(item) {
@@ -47,5 +46,17 @@ export default class OrderStore {
       }
     });
     this.cart = newCart;
+  }
+
+  @action
+  async addOrder(order) {
+    const newOrders = [...this.orders];
+    newOrders.push(order);
+    this.orders = newOrders;
+  }
+
+  @action
+  async clearCart() {
+    this.cart = [];
   }
 }

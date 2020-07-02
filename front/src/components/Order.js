@@ -1,27 +1,47 @@
 import React from 'react';
-import {Text, StyleSheet, TouchableOpacity, Dimensions} from 'react-native';
+import {Text, StyleSheet, View} from 'react-native';
 import {THEME} from '../theme';
+import dateformat from 'dateformat';
 
-export const Order = ({onOpen, itemListPadding}) => {
-  const itemWidth =
-    ((Dimensions.get('window').width - itemListPadding * 2) / 100) * 45;
-
+export const Order = ({order}) => {
   return (
-    <TouchableOpacity onPress={onOpen} style={styles(itemWidth).container}>
-      <Text>Заказ</Text>
-    </TouchableOpacity>
+    <View style={styles.container}>
+      <Text style={styles.date}>
+        Дата заказа: {dateformat(order.date, 'dd.mm.yyyy')}
+      </Text>
+      <View style={styles.itemsContainer}>
+        {order.orderContents.map((el, index) => {
+          return (
+            <View style={styles.item} key={index}>
+              <Text>{el.name}</Text>
+              <Text>{el.price}</Text>
+            </View>
+          );
+        })}
+      </View>
+      <Text>Сумма: {order.sum}</Text>
+    </View>
   );
 };
 
-const styles = itemWidth =>
-  StyleSheet.create({
-    container: {
-      minWidth: itemWidth,
-      height: itemWidth,
-      borderWidth: 1,
-      borderColor: THEME.MAIN,
-      borderRadius: 20,
-      padding: 20,
-      marginVertical: 5,
-    },
-  });
+const styles = StyleSheet.create({
+  container: {
+    width: 'auto',
+    height: 'auto',
+    borderWidth: 1,
+    borderColor: THEME.MAIN,
+    borderRadius: 20,
+    padding: 20,
+    marginVertical: 5,
+  },
+  date: {
+    marginBottom: 20,
+  },
+  itemsContainer: {
+    marginBottom: 20,
+  },
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+});

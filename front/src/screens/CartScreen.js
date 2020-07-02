@@ -1,11 +1,18 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {observer, inject} from 'mobx-react';
 import {CartItemList} from '../components/CartItemList';
 import {toJS} from 'mobx';
+import {THEME} from '../theme';
 
-const CartScreen = ({orderStore}) => {
+const CartScreen = ({orderStore, navigation}) => {
   const items = toJS(orderStore.cart);
+
+  const placeOrder = () => {
+    navigation.navigate('OrderForm', {
+      sum,
+    });
+  };
 
   const removeFromCart = item => {
     orderStore.removeFromCart(item);
@@ -38,6 +45,9 @@ const CartScreen = ({orderStore}) => {
         <Text>СУММА:</Text>
         <Text>{sum} ₽</Text>
       </View>
+      <TouchableOpacity style={styles.placeOrder} onPress={placeOrder}>
+        <Text style={styles.placOrderText}>ОФОРМИТЬ ЗАКАЗ</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -61,6 +71,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 15,
+  },
+  placeOrder: {
+    backgroundColor: THEME.MAIN,
+    borderRadius: 10,
+    padding: 10,
+  },
+  placOrderText: {
+    color: '#fff',
+    textAlign: 'center',
   },
 });
 
