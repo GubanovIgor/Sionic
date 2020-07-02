@@ -8,9 +8,12 @@ const CategoryScreen = ({navigation, productStore}) => {
   }, []);
 
   const openCategoryHandler = async categoryId => {
-    await productStore.getItems(categoryId);
-    navigation.navigate('Items');
+    await productStore.getItems(categoryId, 1);
+    navigation.navigate('Items', {
+      categoryId,
+    });
   };
+
   return (
     <CategoryList
       onOpen={openCategoryHandler}

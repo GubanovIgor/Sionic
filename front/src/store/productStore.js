@@ -18,9 +18,10 @@ export default class ProductStore {
   }
 
   @action
-  async getItems(categoryId) {
+  async getItems(categoryId, itemCount) {
+    console.log(itemCount, typeof itemCount)
     const res = await fetch(
-      `http://192.168.1.66:3000/items?categoryId=${categoryId}`,
+      `http://192.168.1.66:3000/items?categoryId=${categoryId}&itemCount=${itemCount}`,
       {
         method: 'GET',
         headers: {
