@@ -28,7 +28,7 @@ const seeder = async () => {
   const categories = await Category.find();
 
   for (let n = 0; n < 4; n++) {
-    for (let i = 1; i < 11; i++) {
+    for (let i = 1; i < 50; i++) {
       const newItem = await new Item({
         category: categories[n]._id,
         name: `${itemNames[n]} ${i}`,
