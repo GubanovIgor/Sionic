@@ -17,6 +17,7 @@
     "dateformat": "^3.0.3",
     "formik": "^2.1.4",
     "mobx": "^5.15.4",
+    "mobx-persist": "^0.4.1",
     "mobx-react": "^6.2.2",
     "react": "16.11.0",
     "react-dom": "^16.13.1",

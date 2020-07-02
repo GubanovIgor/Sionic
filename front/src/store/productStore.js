@@ -1,9 +1,9 @@
 import {observable, action} from 'mobx';
 
 export default class ProductStore {
-  @observable
-  categories = [];
-  items = [];
+  @observable categories = [];
+
+  @observable items = [];
 
   @action
   async getCategories() {

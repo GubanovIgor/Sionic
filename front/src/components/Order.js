@@ -3,14 +3,7 @@ import {Text, StyleSheet, View} from 'react-native';
 import {THEME} from '../theme';
 import dateformat from 'dateformat';
 
-const items = [
-  {name: 'qweq1', price: 1},
-  {name: 'qweq2', price: 2},
-  {name: 'qweq3', price: 3},
-];
-
 export const Order = ({order}) => {
-  console.log(order);
   return (
     <View style={styles.container}>
       <Text style={styles.date}>

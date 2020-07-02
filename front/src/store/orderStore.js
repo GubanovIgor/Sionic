@@ -1,11 +1,10 @@
 import {observable, action} from 'mobx';
+import {persist} from 'mobx-persist';
 
 export default class OrderStore {
-  @observable
-  orders = [];
+  @persist('list') @observable orders = [];
 
-  @observable
-  cart = [];
+  @persist('list') @observable cart = [];
 
   @action
   async addToCart(item) {

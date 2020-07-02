@@ -1,25 +1,24 @@
 import React from 'react';
 import {AppNavigation} from './src/navigation/AppNavigation';
 import {Provider} from 'mobx-react';
-import ProductStore from './src/store/productStore';
-import OrderStore from './src/store/orderStore';
-import 'mobx-react-lite/batchingForReactDom'
+import 'mobx-react-lite/batchingForReactDom';
+import RootStore from './src/store/RootStore';
+import {create} from 'mobx-persist';
+import {AsyncStorage} from 'react-native';
 
-class RootStore {
-  constructor() {
-    this.productStore = new ProductStore(this);
-    this.orderStore = new OrderStore(this);
-  }
-}
+const hydrate = create({
+  storage: AsyncStorage,
+  jsonify: true,
+});
 
-const rootStore = new RootStore();
+hydrate('order', RootStore.orderStore);
 
 const App = () => {
   return (
     <Provider
-      rootStore={rootStore}
-      productStore={rootStore.productStore}
-      orderStore={rootStore.orderStore}>
+      rootStore={RootStore}
+      productStore={RootStore.productStore}
+      orderStore={RootStore.orderStore}>
       <AppNavigation />
     </Provider>
   );
